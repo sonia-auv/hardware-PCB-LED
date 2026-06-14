@@ -65,6 +65,12 @@ void Error_Handler(void);
 #define signalkill_GPIO_Port GPIOA
 #define switch_Pin GPIO_PIN_1
 #define switch_GPIO_Port GPIOB
+#define RS485_RE_Pin GPIO_PIN_8
+#define RS485_RE_GPIO_Port GPIOA
+#define RS485_DE_Pin GPIO_PIN_11
+#define RS485_DE_GPIO_Port GPIOA
+#define RS485_TE_Pin GPIO_PIN_12
+#define RS485_TE_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 #define PILOTEPA2_PORT GPIOA

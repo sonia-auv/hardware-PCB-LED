@@ -34,7 +34,7 @@ struct led_data{
 };
 
 //Fonctions publiques:
-
+extern struct led_data data_led;
 //Variables publiques:
 //pas de variables publiques
 

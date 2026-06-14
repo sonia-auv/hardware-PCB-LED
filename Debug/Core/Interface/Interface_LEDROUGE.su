@@ -1,3 +1,0 @@
-../Core/Interface/Interface_LEDROUGE.c:11:6:interface_LED_Rouge_Allume	8	static
-../Core/Interface/Interface_LEDROUGE.c:16:6:interface_LED_Rouge_Eteint	8	static
-../Core/Interface/Interface_LEDROUGE.c:21:6:interface_LED_Rouge_Initialise	8	static

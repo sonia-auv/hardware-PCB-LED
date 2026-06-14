@@ -501,7 +501,7 @@ void Allumage_LED(void *argument)
 	     //ws2812bSetRGB(&ledStrip,Led,R,G,B);
 
 	  	 ws2812bSetRGB(&ledStrip,1,255,0,0);
-	  	 ws2812bSetRGB(&ledStrip,0,255,0,0);
+	  	 ws2812bSetRGB(&ledStrip,6,0,0,0);
 
 	  	 ledStrip.dataSentFlag = true;
 	  	 ws2812bSend(&ledStrip,&htim2, TIM_CHANNEL_2);
@@ -512,6 +512,7 @@ void Allumage_LED(void *argument)
   }
   /* USER CODE END 5 */
 }
+
 
 /* USER CODE BEGIN Header_Recois_Trans */
 /**

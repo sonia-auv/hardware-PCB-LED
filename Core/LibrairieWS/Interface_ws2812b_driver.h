@@ -16,7 +16,7 @@
 #include "stdint.h"
 
 //Definition des Pins pour les LEDS
-#define LED_AMOUNT 10
+#define LED_AMOUNT 15
 #define RESET_BYTES_AMOUNT 39
 #define PWM_VALUE_ONE 26
 #define PWM_VALUE_ZERO 13

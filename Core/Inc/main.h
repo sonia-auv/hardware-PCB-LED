@@ -77,7 +77,7 @@ void Error_Handler(void);
 //Definition des Pins pour le bouton
 #define PILOTESWITCH1PORT GPIOB
 #define PILOTESWITCH1PIN GPIO_PIN_1
-
+extern int Bouton1_Val;
 
 extern TIM_HandleTypeDef htim2;
 /* USER CODE END Private defines */

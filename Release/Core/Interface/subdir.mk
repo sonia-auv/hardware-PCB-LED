@@ -6,15 +6,18 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Core/Interface/Interface_Attente.c \
-../Core/Interface/Interface_LEDROUGE.c 
+../Core/Interface/Interface_LEDROUGE.c \
+../Core/Interface/Interface_LectureSwitch.c 
 
 OBJS += \
 ./Core/Interface/Interface_Attente.o \
-./Core/Interface/Interface_LEDROUGE.o 
+./Core/Interface/Interface_LEDROUGE.o \
+./Core/Interface/Interface_LectureSwitch.o 
 
 C_DEPS += \
 ./Core/Interface/Interface_Attente.d \
-./Core/Interface/Interface_LEDROUGE.d 
+./Core/Interface/Interface_LEDROUGE.d \
+./Core/Interface/Interface_LectureSwitch.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -24,7 +27,7 @@ Core/Interface/%.o Core/Interface/%.su Core/Interface/%.cyclo: ../Core/Interface
 clean: clean-Core-2f-Interface
 
 clean-Core-2f-Interface:
-	-$(RM) ./Core/Interface/Interface_Attente.cyclo ./Core/Interface/Interface_Attente.d ./Core/Interface/Interface_Attente.o ./Core/Interface/Interface_Attente.su ./Core/Interface/Interface_LEDROUGE.cyclo ./Core/Interface/Interface_LEDROUGE.d ./Core/Interface/Interface_LEDROUGE.o ./Core/Interface/Interface_LEDROUGE.su
+	-$(RM) ./Core/Interface/Interface_Attente.cyclo ./Core/Interface/Interface_Attente.d ./Core/Interface/Interface_Attente.o ./Core/Interface/Interface_Attente.su ./Core/Interface/Interface_LEDROUGE.cyclo ./Core/Interface/Interface_LEDROUGE.d ./Core/Interface/Interface_LEDROUGE.o ./Core/Interface/Interface_LEDROUGE.su ./Core/Interface/Interface_LectureSwitch.cyclo ./Core/Interface/Interface_LectureSwitch.d ./Core/Interface/Interface_LectureSwitch.o ./Core/Interface/Interface_LectureSwitch.su
 
 .PHONY: clean-Core-2f-Interface
 

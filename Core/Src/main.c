@@ -24,6 +24,8 @@
 /* USER CODE BEGIN Includes */
 #include "../LibrairieWS/Interface_FctWS.h"
 #include "../LibrairieWS/Interface_ws2812b_driver.h"
+#include "../Inc/led_data.h"
+#include "../Interface/Interface_LectureSwitch.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -65,6 +67,7 @@ const osThreadAttr_t RecoisTrans_attributes = {
 };
 /* USER CODE BEGIN PV */
 ws2812bLedStruct ledStrip;
+int Bouton1_Val;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -473,16 +476,7 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
     }
 }
 
-/*
-void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
-{
-    if(htim->Instance == TIM2)
-    {
-    	ledStrip->dataSentFlag = false;
-        HAL_TIM_PWM_Stop_DMA(htim, TIM_CHANNEL_2);
-    }
-}
-*/
+
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_Allumage_LED */
@@ -497,8 +491,81 @@ void Allumage_LED(void *argument)
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
   for(;;)
-  {
+  {/*
+	  if (Bouton1_Val=1){
+		  switch(data_led.command){
+		  	  case LED_ON:
+		  		  ws2812bSetRGB(&ledStrip,data_led.led_number,data_led.R, data_led.G, data_led.B);
+		  		  break;
+		  	  case LED_OFF:
+		  		  ws2812bSetRGB(&ledStrip,data_led.led_number,0,0,0);
+				    break;
+		  	  case LED_BLINK:
+		  		  	ws2812bSetRGB(&ledStrip, data_led.led_number, data_led.R, data_led.G, data_led.B);
+		  		    vTaskDelay(500);
+		  		    ws2812bSetRGB(&ledStrip, data_led.led_number, 0, 0, 0);
+		  		    vTaskDelay(500);
+		  		    break;
+
+
+		  }
+      data_led.led_number = 0;
+      data_led.R = 0;
+      data_led.G = 0;
+      data_led.B = 0;
+
+	  }
+    data_led.led_number = 0;
+    data_led.R = 0;
+    data_led.G = 0;
+    data_led.B = 0;
+    */
+	 Lecture_Switch();
+     if (Bouton1_Val ==1){
+    	 ws2812bSetRGB(&ledStrip,0,255,0,0);
+    	 ws2812bSetRGB(&ledStrip,1,255,0,0);
+    	 ws2812bSetRGB(&ledStrip,2,255,0,0);
+    	 ws2812bSetRGB(&ledStrip,3,255,0,0);
+    	 ws2812bSetRGB(&ledStrip,4,255,0,0);
+    	 ws2812bSetRGB(&ledStrip,5,255,0,0);
+    	 ws2812bSetRGB(&ledStrip,6,255,0,0);
+    	 ws2812bSetRGB(&ledStrip,7,255,0,0);
+    	 ws2812bSetRGB(&ledStrip,8,255,0,0);
+    	 ws2812bSetRGB(&ledStrip,9,255,0,0);
+    	 	 //ws2812bSetRGB(&ledStrip,10,0,255,0);
+    	 	 //ws2812bSetRGB(&ledStrip,11,255,0,0);
+
+    	 	 ledStrip.dataSentFlag = true;
+    	 	 ws2812bSend(&ledStrip,&htim2, TIM_CHANNEL_2);
+    	 	 while(ledStrip.dataSentFlag == false);
+    	 	 osDelay(200);
+    	 	 //ws2812bClearAll(&ledStrip);
+    	 	 ws2812bSend(&ledStrip,&htim2, TIM_CHANNEL_2);
+     }else{
+    	 	 	 ws2812bSetRGB(&ledStrip,0,0,255,0);
+    	     	 ws2812bSetRGB(&ledStrip,1,0,255,0);
+    	     	 ws2812bSetRGB(&ledStrip,2,0,255,0);
+    	     	 ws2812bSetRGB(&ledStrip,3,0,255,0);
+    	     	 ws2812bSetRGB(&ledStrip,4,0,255,0);
+    	     	 ws2812bSetRGB(&ledStrip,5,0,255,0);
+    	     	 ws2812bSetRGB(&ledStrip,6,0,255,0);
+    	     	 ws2812bSetRGB(&ledStrip,7,0,255,0);
+    	     	 ws2812bSetRGB(&ledStrip,8,0,255,0);
+    	     	 ws2812bSetRGB(&ledStrip,9,255,0,0);
+    	     	 	 //ws2812bSetRGB(&ledStrip,10,0,255,0);
+    	     	 	 //ws2812bSetRGB(&ledStrip,11,255,0,0);
+
+    	     	 	 ledStrip.dataSentFlag = true;
+    	     	 	 ws2812bSend(&ledStrip,&htim2, TIM_CHANNEL_2);
+    	     	 	 while(ledStrip.dataSentFlag == false);
+    	     	 	 osDelay(200);
+    	     	 	 //ws2812bClearAll(&ledStrip);
+    	     	 	 ws2812bSend(&ledStrip,&htim2, TIM_CHANNEL_2);
+     }
+
+
 	     //ws2812bSetRGB(&ledStrip,Led,R,G,B);
+	  /*
 
 	  	 ws2812bSetRGB(&ledStrip,1,255,0,0);
 	  	 ws2812bSetRGB(&ledStrip,6,0,0,0);
@@ -509,10 +576,10 @@ void Allumage_LED(void *argument)
 	  	 osDelay(1000);
 	  	 ws2812bClearAll(&ledStrip);
 	  	 ws2812bSend(&ledStrip,&htim2, TIM_CHANNEL_2);
+	  	 */
   }
   /* USER CODE END 5 */
 }
-
 
 /* USER CODE BEGIN Header_Recois_Trans */
 /**
@@ -527,10 +594,7 @@ void Recois_Trans(void *argument)
   /* Infinite loop */
   for(;;)
   {
-#define R 0;
-#define G 0;
-#define B 255;
-#define Led 2;
+    
     osDelay(1000);
   }
   /* USER CODE END Recois_Trans */

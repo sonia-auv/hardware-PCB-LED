@@ -1,5 +1,6 @@
 "./Core/Interface/Interface_Attente.o"
 "./Core/Interface/Interface_LEDROUGE.o"
+"./Core/Interface/Interface_LectureSwitch.o"
 "./Core/LibrairieWS/Interface_FctWS.o"
 "./Core/LibrairieWS/Interface_ws2812b_driver.o"
 "./Core/Pilote/PilotePB13.o"

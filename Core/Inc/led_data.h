@@ -23,7 +23,7 @@ enum led_command{
     LED_ON = 1,
     LED_BLINK = 2
 };
-#define SLAVE_ID 0x09
+#define SLAVE_LED_ID 0x09
 
 struct led_data{
     uint8_t command;
@@ -32,6 +32,7 @@ struct led_data{
     uint8_t G;
     uint8_t B;
 };
+extern struct led_data data_led;
 
 //Fonctions publiques:
 

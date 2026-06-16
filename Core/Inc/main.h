@@ -31,7 +31,20 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#define INTERFACERS485_DEBUT_TRAME  0x3A
+#define INTERFACERS485_FIN_TRAME    0x0D
 
+#define INTERFACERS485_TAILLE_MAX_DATA  8
+#define SERVICERS485_TAILLE_FIFO_RX     16
+
+#define SERVICERS485_DISPONIBLE      0
+#define SERVICERS485_OCCUPE          1
+
+#define INTERFACERS485_TRAME_INVALIDE  0
+#define INTERFACERS485_TRAME_VALIDE    1
+
+#define SERVICERS485_REUSSI          1
+#define SERVICERS485_ERREUR          0
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

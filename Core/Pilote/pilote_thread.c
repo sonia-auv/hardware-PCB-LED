@@ -6,7 +6,7 @@
  */
 
 
-#include "piloteThread.h"
+#include "pilote_thread.h"
 #include "cmsis_os.h"
 #include "main.h"
 

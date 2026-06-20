@@ -4,25 +4,45 @@
  *  Created on: Jun 14, 2026
  *      Author: ilyes
  */
+#include "main.h"
 #include "Pilote_Attente.h"
 #include "piloteRS485.h"
-#include "main.h"
+
 
 extern UART_HandleTypeDef huart2;
 
+#ifndef PILOTERS485_UART
 #define PILOTERS485_UART              huart2
+#endif
 
+#ifndef PILOTERS485_DE_PORT
 #define PILOTERS485_DE_PORT           RS485_DE_GPIO_Port 
+#endif
+#ifndef PILOTERS485_DE_PIN
 #define PILOTERS485_DE_PIN            RS485_DE_Pin
+#endif
 
+#ifndef PILOTERS485_RE_PORT
 #define PILOTERS485_RE_PORT           RS485_RE_GPIO_Port
+#endif
+#ifndef PILOTERS485_RE_PIN
 #define PILOTERS485_RE_PIN            RS485_RE_Pin
+#endif
 
+#ifndef PILOTERS485_TE_PORT
 #define PILOTERS485_TE_PORT           RS485_TE_GPIO_Port
+#endif
+#ifndef PILOTERS485_TE_PIN
 #define PILOTERS485_TE_PIN            RS485_TE_Pin
+#endif
 
-#define PILOTERS485_TIMEOUT_MS        100
-#define PILOTERS485_DELAI_FIN_TRANSMISSION_MS  20
+#ifndef PILOTERS485_TIMEOUT_MS
+#define PILOTERS485_TIMEOUT_MS 100
+#endif
+
+#ifndef PILOTERS485_DELAI_FIN_TRANSMISSION_MS
+#define PILOTERS485_DELAI_FIN_TRANSMISSION_MS 20
+#endif
 
 void piloteRS485_initialise(void)
 {
@@ -45,7 +65,7 @@ uint8_t piloteRS485_recoitOctet(void)
 
     return octet;
 }
-
+ 
 uint8_t piloteRS485_octetDisponible(void)
 {
     if(__HAL_UART_GET_FLAG(&PILOTERS485_UART, UART_FLAG_RXNE) != RESET)

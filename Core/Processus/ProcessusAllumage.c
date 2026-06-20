@@ -4,8 +4,7 @@
  *  Created on: May 30, 2026
  *      Author: audou
  */
-#include "../Inc/main.h"
-
+#include "main.h"
 #include "../Interface/Interface_LEDROUGE.h"
 #include "../Interface/Interface_Attente.h"
 #include "ProcessusAllumage.h"

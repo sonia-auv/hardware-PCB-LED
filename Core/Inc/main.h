@@ -31,20 +31,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#define INTERFACERS485_DEBUT_TRAME  0x3A
-#define INTERFACERS485_FIN_TRAME    0x0D
 
-#define INTERFACERS485_TAILLE_MAX_DATA  8
-#define SERVICERS485_TAILLE_FIFO_RX     16
-
-#define SERVICERS485_DISPONIBLE      0
-#define SERVICERS485_OCCUPE          1
-
-#define INTERFACERS485_TRAME_INVALIDE  0
-#define INTERFACERS485_TRAME_VALIDE    1
-
-#define SERVICERS485_REUSSI          1
-#define SERVICERS485_ERREUR          0
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -96,6 +83,33 @@ void Error_Handler(void);
 //Definition des Pins pour le bouton
 #define PILOTESWITCH1PORT GPIOB
 #define PILOTESWITCH1PIN GPIO_PIN_1
+
+
+#define SERVICERS485_DEBUT_TRAME  0x3A
+#define SERVICERS485_FIN_TRAME    0x0D
+
+#define SERVICERS485_REUSSI       1
+#define SERVICERS485_ERREUR       0
+
+#define SERVICERS485_DISPONIBLE   0
+#define SERVICERS485_OCCUPE       1
+
+#define PILOTERS485_UART              huart2
+
+#define PILOTERS485_DE_PORT           RS485_DE_GPIO_Port 
+#define PILOTERS485_DE_PIN            RS485_DE_Pin
+
+#define PILOTERS485_RE_PORT           RS485_RE_GPIO_Port
+#define PILOTERS485_RE_PIN            RS485_RE_Pin
+
+#define PILOTERS485_TE_PORT           RS485_TE_GPIO_Port
+#define PILOTERS485_TE_PIN            RS485_TE_Pin
+
+#define PILOTERS485_TIMEOUT_MS        100
+#define PILOTERS485_DELAI_FIN_TRANSMISSION_MS  20
+
+#define SERVICERS485_TAILLE_MAX_DATA  8
+#define SERVICERS485_TAILLE_FIFO_RX   16
 
 
 extern TIM_HandleTypeDef htim2;

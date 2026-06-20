@@ -1,40 +1,58 @@
 /*
- * pilote_threadex.c
+ * pilote_thread.c
  *
  *  Created on: Jun 14, 2026
  *      Author: ilyes
  */
-
-
+#include "main.h"
 #include "pilote_thread.h"
 #include "cmsis_os.h"
-#include "main.h"
 
-#define PILOTETHREAD_STACK_SIZE  512
-#define PILOTETHREAD_PRIORITE    osPriorityNormal
-
-static osThreadId_t piloteThread_id;
-
-void piloteThread_initialise(
-    PILOTETHREAD_FONCTION fonction,
-    void *parametre
+static osPriority_t piloteThread_convertitPriorite(
+    PILOTETHREAD_PRIORITE priorite
 )
 {
-    const osThreadAttr_t piloteThread_attributs =
+    switch(priorite)
     {
-        .name = "rs485Thread",
-        .stack_size = PILOTETHREAD_STACK_SIZE,
-        .priority = PILOTETHREAD_PRIORITE,
+        case PILOTETHREAD_PRIORITE_BASSE:
+            return osPriorityLow;
+
+        case PILOTETHREAD_PRIORITE_HAUTE:
+            return osPriorityHigh;
+
+        case PILOTETHREAD_PRIORITE_NORMALE:
+        default:
+            return osPriorityNormal;
+    }
+} 
+
+PILOTETHREAD_ID piloteThread_initialise(
+    PILOTETHREAD_FONCTION fonction,
+    void *parametre,
+    const char *nom,
+    uint32_t stackSize,
+    PILOTETHREAD_PRIORITE priorite
+)
+{
+    osThreadId_t threadId;
+
+    const osThreadAttr_t attributs =
+    {
+        .name = nom,
+        .stack_size = stackSize,
+        .priority = piloteThread_convertitPriorite(priorite),
     };
 
-    piloteThread_id = osThreadNew(
+    threadId = osThreadNew(
         fonction,
         parametre,
-        &piloteThread_attributs
+        &attributs
     );
 
-    if(piloteThread_id == NULL)
+    if(threadId == NULL)
     {
         Error_Handler();
     }
+
+    return (PILOTETHREAD_ID)threadId;
 }

@@ -12,6 +12,8 @@
 #include "../Pilote/pilote_thread.h"
 
 static SERVICERS485_TRAME serviceRS485_fifoRx[SERVICERS485_TAILLE_FIFO_RX];
+static PILOTETHREAD_ID serviceRS485_threadReceptionId;
+static PILOTEMUTEX_ID serviceRS485_mutexId;
 
 static uint8_t serviceRS485_indexLecture = 0;
 static uint8_t serviceRS485_indexEcriture = 0;
@@ -61,9 +63,16 @@ void serviceRS485_initialise(void)
     serviceRS485_nombreTrames = 0;
 
     piloteRS485_initialise();
-    piloteMutex_initialise();
 
-    piloteThread_initialise(serviceRS485_threadReception, 0);
+    serviceRS485_mutexId = piloteMutex_cree();
+
+    serviceRS485_threadReceptionId = piloteThread_initialise(
+        serviceRS485_threadReception,
+        0,
+        "rs485RxThread",
+        512,
+        PILOTETHREAD_PRIORITE_NORMALE
+    );
 }
 
 /**
@@ -114,9 +123,9 @@ void serviceRS485_write(
     trame[index++] = (uint8_t)(checksum & 0xFF);
     trame[index++] = SERVICERS485_FIN_TRAME;
 
-    piloteMutex_prendre();
+    piloteMutex_prendre(serviceRS485_mutexId);
     piloteRS485_transmetBloc(trame, index);
-    piloteMutex_relacher();
+    piloteMutex_relacher(serviceRS485_mutexId);
 }
 
 /**
@@ -169,7 +178,7 @@ uint8_t serviceRS485_readAvecSlave(
         return 0;
     }
 
-    piloteMutex_prendre();
+    piloteMutex_prendre(serviceRS485_mutexId);
 
     for(uint8_t i = 0; i < serviceRS485_nombreTrames; i++)
     {
@@ -194,12 +203,12 @@ uint8_t serviceRS485_readAvecSlave(
             }
 
             serviceRS485_retireTrameRx(i);
-            piloteMutex_relacher();
+            piloteMutex_relacher(serviceRS485_mutexId);
             return nbByte;
         }
     }
 
-    piloteMutex_relacher();
+    piloteMutex_relacher(serviceRS485_mutexId);
 
     return 0;
 }
@@ -214,9 +223,9 @@ uint8_t serviceRS485_trameDisponible(void)
 {
     uint8_t disponible;
 
-    piloteMutex_prendre();
+    piloteMutex_prendre(serviceRS485_mutexId);
     disponible = (serviceRS485_nombreTrames > 0);
-    piloteMutex_relacher();
+    piloteMutex_relacher(serviceRS485_mutexId);
 
     return disponible;
 }
@@ -238,11 +247,11 @@ uint8_t serviceRS485_litTrame(SERVICERS485_TRAME *trame)
         return SERVICERS485_ERREUR;
     }
 
-    piloteMutex_prendre();
+    piloteMutex_prendre(serviceRS485_mutexId);
 
     if(serviceRS485_nombreTrames == 0)
     {
-        piloteMutex_relacher();
+        piloteMutex_relacher(serviceRS485_mutexId);
         return SERVICERS485_ERREUR;
     }
 
@@ -250,7 +259,7 @@ uint8_t serviceRS485_litTrame(SERVICERS485_TRAME *trame)
 
     serviceRS485_retireTrameRx(0);
 
-    piloteMutex_relacher();
+    piloteMutex_relacher(serviceRS485_mutexId);
 
     return SERVICERS485_REUSSI;
 }
@@ -273,9 +282,9 @@ static void serviceRS485_threadReception(void *parametre)
     {
         if(serviceRS485_recoitTrame(&trameRecue) == SERVICERS485_REUSSI)
         {
-            piloteMutex_prendre();
+            piloteMutex_prendre(serviceRS485_mutexId);
             serviceRS485_ajouteTrameRx(&trameRecue);
-            piloteMutex_relacher();
+            piloteMutex_relacher(serviceRS485_mutexId);
         }
     }
 }

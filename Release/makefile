@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (13.3.rel1)
+# Toolchain: GNU Tools for STM32 (14.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -16,6 +16,7 @@ RM := rm -rf
 -include Drivers/STM32L0xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
+-include Core/Service/subdir.mk
 -include Core/Processus/subdir.mk
 -include Core/Pilote/subdir.mk
 -include Core/LibrairieWS/subdir.mk
@@ -68,8 +69,8 @@ all: main-build
 main-build: PWMLEDTestBoard.elf secondary-outputs
 
 # Tool invocations
-PWMLEDTestBoard.elf PWMLEDTestBoard.map: $(OBJS) $(USER_OBJS) C:\Users\audou\Documents\Asso_ETS\Sonia\LED\LED_STM32\Tests\PWMLEDTestBoard\STM32L031K6TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "PWMLEDTestBoard.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\audou\Documents\Asso_ETS\Sonia\LED\LED_STM32\Tests\PWMLEDTestBoard\STM32L031K6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PWMLEDTestBoard.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+PWMLEDTestBoard.elf PWMLEDTestBoard.map: $(OBJS) $(USER_OBJS) D:\2_Club\ Sonia\Erwan\ Ado\hardware-PCB-LED\STM32L031K6TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "PWMLEDTestBoard.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"D:\2_Club Sonia\Erwan Ado\hardware-PCB-LED\STM32L031K6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PWMLEDTestBoard.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

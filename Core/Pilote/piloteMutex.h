@@ -1,18 +1,41 @@
 /*
  * piloteMutex.h
  *
- *  Created on: Jun 14, 2026
- *      Author: ilyes
+ * Pilote generique de mutex.
+ * L'implementation STM32/CMSIS est dans piloteMutex.c.
  */
 
 #ifndef PILOTE_PILOTEMUTEX_H_
 #define PILOTE_PILOTEMUTEX_H_
 
+typedef void *PILOTEMUTEX_ID;
 
-void piloteMutex_initialise(void);
+/**
+ * @brief Cree un mutex.
+ *
+ * @return Identifiant du mutex cree.
+ */
+PILOTEMUTEX_ID piloteMutex_cree(void);
 
-void piloteMutex_prendre(void);
+/**
+ * @brief Detruit un mutex.
+ *
+ * @param mutex Identifiant du mutex.
+ */
+void piloteMutex_detruit(PILOTEMUTEX_ID mutex);
 
-void piloteMutex_relacher(void);
+/**
+ * @brief Prend un mutex.
+ *
+ * @param mutex Identifiant du mutex.
+ */
+void piloteMutex_prendre(PILOTEMUTEX_ID mutex);
+
+/**
+ * @brief Relache un mutex.
+ *
+ * @param mutex Identifiant du mutex.
+ */
+void piloteMutex_relacher(PILOTEMUTEX_ID mutex);
 
 #endif /* PILOTE_PILOTEMUTEX_H_ */

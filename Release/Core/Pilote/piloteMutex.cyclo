@@ -1,0 +1,4 @@
+../Core/Pilote/piloteMutex.c:11:16:piloteMutex_cree	2
+../Core/Pilote/piloteMutex.c:26:6:piloteMutex_detruit	2
+../Core/Pilote/piloteMutex.c:36:6:piloteMutex_prendre	3
+../Core/Pilote/piloteMutex.c:49:6:piloteMutex_relacher	3

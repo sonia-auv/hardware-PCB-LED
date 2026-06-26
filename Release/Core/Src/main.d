@@ -39,9 +39,12 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
+ ../Core/Inc/RS485_Definition.h \
  ../Core/Src/../LibrairieWS/Interface_FctWS.h \
  ../Core/Src/../LibrairieWS/Interface_ws2812b_driver.h \
- ../Core/Src/../LibrairieWS/Interface_ws2812b_driver.h
+ ../Core/Src/../LibrairieWS/Interface_ws2812b_driver.h \
+ ../Core/Src/../Service/serviceRS485.h \
+ ../Core/Src/../Processus/processTestRS485.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:
 ../Core/Inc/stm32l0xx_hal_conf.h:
@@ -83,6 +86,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:
+../Core/Inc/RS485_Definition.h:
 ../Core/Src/../LibrairieWS/Interface_FctWS.h:
 ../Core/Src/../LibrairieWS/Interface_ws2812b_driver.h:
 ../Core/Src/../LibrairieWS/Interface_ws2812b_driver.h:
+../Core/Src/../Service/serviceRS485.h:
+../Core/Src/../Processus/processTestRS485.h:

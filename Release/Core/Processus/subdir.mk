@@ -1,17 +1,20 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (13.3.rel1)
+# Toolchain: GNU Tools for STM32 (14.3.rel1)
 ################################################################################
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Processus/ProcessusAllumage.c 
+../Core/Processus/ProcessusAllumage.c \
+../Core/Processus/processTestRS485.c 
 
 OBJS += \
-./Core/Processus/ProcessusAllumage.o 
+./Core/Processus/ProcessusAllumage.o \
+./Core/Processus/processTestRS485.o 
 
 C_DEPS += \
-./Core/Processus/ProcessusAllumage.d 
+./Core/Processus/ProcessusAllumage.d \
+./Core/Processus/processTestRS485.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +24,7 @@ Core/Processus/%.o Core/Processus/%.su Core/Processus/%.cyclo: ../Core/Processus
 clean: clean-Core-2f-Processus
 
 clean-Core-2f-Processus:
-	-$(RM) ./Core/Processus/ProcessusAllumage.cyclo ./Core/Processus/ProcessusAllumage.d ./Core/Processus/ProcessusAllumage.o ./Core/Processus/ProcessusAllumage.su
+	-$(RM) ./Core/Processus/ProcessusAllumage.cyclo ./Core/Processus/ProcessusAllumage.d ./Core/Processus/ProcessusAllumage.o ./Core/Processus/ProcessusAllumage.su ./Core/Processus/processTestRS485.cyclo ./Core/Processus/processTestRS485.d ./Core/Processus/processTestRS485.o ./Core/Processus/processTestRS485.su
 
 .PHONY: clean-Core-2f-Processus
 

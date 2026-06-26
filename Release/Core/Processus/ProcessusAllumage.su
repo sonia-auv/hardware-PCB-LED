@@ -1,3 +1,3 @@
-../Core/Processus/ProcessusAllumage.c:13:6:processusClignotant_Initialise	8	static
-../Core/Processus/ProcessusAllumage.c:17:6:processusClignotant_Debut	8	static
-../Core/Processus/ProcessusAllumage.c:23:6:processusClignotant_Eteint	8	static
+../Core/Processus/ProcessusAllumage.c:12:6:processusClignotant_Initialise	8	static
+../Core/Processus/ProcessusAllumage.c:16:6:processusClignotant_Debut	8	static
+../Core/Processus/ProcessusAllumage.c:22:6:processusClignotant_Eteint	8	static

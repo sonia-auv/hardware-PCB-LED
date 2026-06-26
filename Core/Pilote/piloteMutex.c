@@ -1,32 +1,60 @@
 /*
  * piloteMutex.c
  *
- *  Created on: Jun 14, 2026
- *      Author: ilyes
+ * Implementation STM32IDE / CMSIS-RTOS2 du pilote de mutex.
  */
 
+#include "main.h"
 #include "piloteMutex.h"
 #include "cmsis_os.h"
-#include "main.h"
 
-static osMutexId_t piloteMutex_id;
-
-void piloteMutex_initialise(void)
+PILOTEMUTEX_ID piloteMutex_cree(void)
 {
-    piloteMutex_id = osMutexNew(NULL);
+    osMutexId_t mutex;
 
-    if(piloteMutex_id == NULL)
+    mutex = osMutexNew(0);
+
+    if(mutex == 0)
+    {
+        Error_Handler();
+        return 0;
+    }
+
+    return (PILOTEMUTEX_ID)mutex;
+}
+
+void piloteMutex_detruit(PILOTEMUTEX_ID mutex)
+{
+    if(mutex == 0)
+    {
+        return;
+    }
+
+    osMutexDelete((osMutexId_t)mutex);
+}
+
+void piloteMutex_prendre(PILOTEMUTEX_ID mutex)
+{
+    if(mutex == 0)
+    {
+        return;
+    }
+
+    if(osMutexAcquire((osMutexId_t)mutex, osWaitForever) != osOK)
     {
         Error_Handler();
     }
 }
 
-void piloteMutex_prendre(void)
+void piloteMutex_relacher(PILOTEMUTEX_ID mutex)
 {
-    osMutexAcquire(piloteMutex_id, osWaitForever);
-}
+    if(mutex == 0)
+    {
+        return;
+    }
 
-void piloteMutex_relacher(void)
-{
-    osMutexRelease(piloteMutex_id);
+    if(osMutexRelease((osMutexId_t)mutex) != osOK)
+    {
+        Error_Handler();
+    }
 }

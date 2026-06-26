@@ -1,6 +1,5 @@
 Core/Processus/ProcessusAllumage.o: ../Core/Processus/ProcessusAllumage.c \
- ../Core/Processus/../Inc/main.h \
- ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h \
+ ../Core/Inc/main.h ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h \
  ../Core/Inc/stm32l0xx_hal_conf.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h \
  ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_def.h \
@@ -32,7 +31,7 @@ Core/Processus/ProcessusAllumage.o: ../Core/Processus/ProcessusAllumage.c \
  ../Core/Processus/../Interface/Interface_LEDROUGE.h \
  ../Core/Processus/../Interface/Interface_Attente.h \
  ../Core/Processus/ProcessusAllumage.h
-../Core/Processus/../Inc/main.h:
+../Core/Inc/main.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:
 ../Core/Inc/stm32l0xx_hal_conf.h:
 ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_rcc.h:

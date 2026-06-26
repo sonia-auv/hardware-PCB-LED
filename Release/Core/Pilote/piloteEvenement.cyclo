@@ -1,0 +1,6 @@
+../Core/Pilote/piloteEvenement.c:11:20:piloteEvenement_cree	2
+../Core/Pilote/piloteEvenement.c:26:6:piloteEvenement_detruit	2
+../Core/Pilote/piloteEvenement.c:36:6:piloteEvenement_metFlags	2
+../Core/Pilote/piloteEvenement.c:52:6:piloteEvenement_effaceFlags	2
+../Core/Pilote/piloteEvenement.c:68:10:piloteEvenement_attendFlags	3
+../Core/Pilote/piloteEvenement.c:105:10:piloteEvenement_litFlags	2

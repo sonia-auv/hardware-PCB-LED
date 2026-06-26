@@ -22,8 +22,12 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "RS485_Definition.h"
 #include "../LibrairieWS/Interface_FctWS.h"
 #include "../LibrairieWS/Interface_ws2812b_driver.h"
+#include "../Service/serviceRS485.h"
+#include "../Processus/processTestRS485.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,12 +60,13 @@ const osThreadAttr_t AllumageLED_attributes = {
   .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
-/* Definitions for RecoisTrans */
-osThreadId_t RecoisTransHandle;
-const osThreadAttr_t RecoisTrans_attributes = {
-  .name = "RecoisTrans",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityAboveNormal,
+
+/* Definitions for TestRS485 */
+osThreadId_t TestRS485Handle;
+const osThreadAttr_t TestRS485_attributes = {
+  .name = "TestRS485",
+  .stack_size = 256 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* USER CODE BEGIN PV */
 ws2812bLedStruct ledStrip;
@@ -75,7 +80,6 @@ static void MX_I2C1_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_TIM2_Init(void);
 void Allumage_LED(void *argument);
-void Recois_Trans(void *argument);
 
 /* USER CODE BEGIN PFP */
 //void WS2812_Send(ws2812bLedStruct * ledStrip);
@@ -128,7 +132,7 @@ int main(void)
   osKernelInitialize();
 
   /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
+  serviceRS485_initialise();
   /* USER CODE END RTOS_MUTEX */
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
@@ -147,11 +151,15 @@ int main(void)
   /* creation of AllumageLED */
   AllumageLEDHandle = osThreadNew(Allumage_LED, NULL, &AllumageLED_attributes);
 
-  /* creation of RecoisTrans */
-  RecoisTransHandle = osThreadNew(Recois_Trans, NULL, &RecoisTrans_attributes);
+
+
 
   /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
+  TestRS485Handle = osThreadNew(
+      processTestRS485_thread,
+      NULL,
+      &TestRS485_attributes
+  );
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */

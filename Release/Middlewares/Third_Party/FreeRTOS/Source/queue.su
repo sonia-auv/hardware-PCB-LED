@@ -1,4 +1,4 @@
-../Middlewares/Third_Party/FreeRTOS/Source/queue.c:2287:19:prvIsQueueEmpty	8	static
+../Middlewares/Third_Party/FreeRTOS/Source/queue.c:2287:19:prvIsQueueEmpty	16	static
 ../Middlewares/Third_Party/FreeRTOS/Source/queue.c:2070:19:prvCopyDataToQueue	16	static
 ../Middlewares/Third_Party/FreeRTOS/Source/queue.c:2149:13:prvCopyDataFromQueue	8	static
 ../Middlewares/Third_Party/FreeRTOS/Source/queue.c:2167:13:prvUnlockQueue	16	static

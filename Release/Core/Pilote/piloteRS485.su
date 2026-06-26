@@ -1,0 +1,4 @@
+../Core/Pilote/piloteRS485.c:47:6:piloteRS485_initialise	8	static
+../Core/Pilote/piloteRS485.c:55:9:piloteRS485_recoitOctet	16	static
+../Core/Pilote/piloteRS485.c:69:9:piloteRS485_octetDisponible	0	static
+../Core/Pilote/piloteRS485.c:78:6:piloteRS485_transmetBloc	16	static
